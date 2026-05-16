@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="km">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Kaball</title>
+  <link rel="stylesheet" href="/Assignment/admin.css">
+</head>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+
+  body {
+    background: #f5f6f8;
+    color: #222;
+  }
+
+  .app {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  .sidebar {
+    min-height: 100%;
+    width: 220px;
+    background: #ffffff;
+    border-right: 1px solid #e5e7eb;
+    padding: 24px 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-size: 34px;
+    font-weight: bold;
+    color: #1f2937;
+    margin-bottom: 28px;
+  }
+
+  .menu {
+    list-style: none;
+  }
+
+  .menu li {
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #374151;
+    transition: 0.2s;
+  }
+
+  .menuTable li {
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #374151;
+    transition: 0.2s;
+  }
+
+  .menu li:hover {
+    background: #eefafb;
+    color: #1aa8bc;
+    font-weight: 600;
+  }
+
+  .menu .active {
+    background: #eefafb;
+    color: #1aa8bc;
+    font-weight: 700;
+    list-style: none;
+  }
+
+  .menuTable li:hover {
+    background: #eefafb;
+    color: #1aa8bc;
+    font-weight: 600;
+  }
+
+  .menuTable {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    gap: 20px;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .menuTable .active {
+    background: #eefafb;
+    color: #1aa8bc;
+    font-weight: 700;
+  }
+
+  .upgrade-btn {
+    display: block;
+    width: 100%;
+    background: #58c8d5;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
+  }
+
+  .main {
+    flex: 1;
+    padding: 26px;
+  }
+
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .search-box {
+    display: block;
+    min-width: 280px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 15px;
+    outline: none;
+  }
+
+  .user-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .avatar {
+    width: 42px;
+    height: 42px;
+    background: #4f46e5;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+
+  .section-card {
+    background: white;
+    border-radius: 14px;
+    padding: 18px;
+    margin-top: 22px;
+    border: 1px solid #eceff3;
+  }
+
+  .select-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .toolbar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+
+  .tool-btn {
+    background: white;
+    border: 1px solid #dbe1e8;
+    padding: 10px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .tool-btn.primary {
+    background: #57c7d4;
+    color: white;
+    border: none;
+  }
+
+  @media (max-width: 900px) {
+    .sidebar {
+      width: 90px;
+      padding: 20px 10px;
+    }
+
+    .logo {
+      font-size: 20px;
+    }
+
+    .menu li {
+      font-size: 12px;
+      padding: 10px 8px;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .app {
+      flex-direction: column;
+    }
+
+    .sidebar {
+      width: 100%;
+      border-right: none;
+      border-bottom: 1px solid #e5e7eb;
+    }
+  }
+
+  input {
+    display: block;
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding: 6px;
+  }
+
+  #imgInputUser,
+  #imgInputGuest {
+    padding: 4px;
+    cursor: pointer;
+  }
+
+  button {
+    border-radius: 5px;
+    padding: 6px;
+    border: none;
+    cursor: pointer;
+    background-color: aqua;
+    padding: 10px;
+  }
+
+  #containerUser,
+  #containerGuest {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+  }
+
+  .EditMain {
+    background-color: rgb(237, 237, 111);
+  }
+
+  .DeleteMain {
+    background-color: rgb(237, 111, 111);
+  }
+
+  .both-btn {
+    margin-top: 3rem;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .insert {
+    display: flex;
+    gap: 3rem;
+    padding: 2rem 3rem;
+  }
+
+
+  table {
+    margin-left: 1.6rem;
+    width: 96%;
+    font-size: 14px;
+    border-collapse: collapse;
+  }
+
+  thead {
+    font-weight: 600;
+  }
+
+  td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  h1 {
+    margin: 20px 0;
+  }
+
+  #AddForGuest,
+  #AllData,
+  #guestSection {
+    display: none;
+  }
+
+</style>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div>
+        <div class="logo">KABALL</div>
+        <ul class="menu">
+          <li id="AddItem1" class="active">For User</li>
+          <li id="AddItem2">For Guest</li>
+          <li id="BorrowReport">Borrow Report</li>
+          <li id="UserData">Dashboards</li>
+          <li><a href="/Kaball_Book_Library - Copy/getStarted.html">Logout</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="main">
+      <section id="AddForUser">
+        <section>
+          <div class="topbar">
+            <input id="searchBoxUser" class="search-box" type="text" placeholder="Start Searching..." />
+            <div class="user-box">
+              <div>
+                <strong>Profile</strong><br />
+                <small>Account Menu</small>
+              </div>
+              <div class="avatar">P</div>
+            </div>
+          </div>
+          
+          <div class="section-card">
+            <div class="select-row">
+              <span>Select an Option</span>
+              <span>&gt;</span>
+            </div>
+          </div>
+          
+          <div class="toolbar">
+            <button class="tool-btn">Cover</button>
+            <button class="tool-btn">Title</button>
+            <button class="tool-btn">↓</button>
+            <button class="tool-btn primary">Filters</button>
+          </div>
+        </section>
+        <h1>Add Items For User</h1>
+        <section id="inputUserData">
+          <div class="insert">
+            <input type="text" id="titleUser" placeholder="Enter title">
+            <input type="text" id="textUser" placeholder="Enter description">
+            <input type="file" id="imgInputUser" accept="image/*">
+            <button id="btnUser">Add</button>
+          </div>
+        </section>
+        <section class="get-container" id="getContainerUser">
+          <div id="containerUser">
+            <img src="" alt="">
+          </div>
+        </section>
+      </section>
+      <section id="AddForGuest">
+        <section>
+          <div class="topbar">
+            <input id="searchBoxGuest" class="search-box" type="text" placeholder="Start Searching..." />
+            <div class="user-box">
+              <div>
+                <strong>Profile</strong><br />
+                <small>Account Menu</small>
+              </div>
+              <div class="avatar">P</div>
+            </div>
+          </div>
+          
+          <div class="section-card">
+            <div class="select-row">
+              <span>Select an Option</span>
+              <span>&gt;</span>
+            </div>
+          </div>
+          
+          <div class="toolbar">
+            <button class="tool-btn">Cover</button>
+            <button class="tool-btn">Title</button>
+            <button class="tool-btn">↓</button>
+            <button class="tool-btn primary">Filters</button>
+          </div>
+        </section>
+        <h1>Add Items For Guest</h1>
+        <section id="inputGuestData">
+          <div class="insert">
+            <input type="text" id="titleGuest" placeholder="Enter title">
+            <input type="text" id="textGuest" placeholder="Enter description">
+            <input type="file" id="imgInputGuest" accept="image/*">
+            <button id="btnGuest">Add</button>
+          </div>
+        </section>
+        <section class="get-container" id="getContainerGuest">
+          <div id="containerGuest">
+            <img src="" alt="">
+          </div>
+        </section>
+      </section>
+      <section id="AllData">
+        <ul class="menuTable">
+          <li class="active" id="TableUser">User</li>
+          <li id="TableGuest">Guest</li>
+        </ul>
+        <section id="userSection">
+          <input id="searchTableUser" class="search-box" type="text" placeholder="Start Searching..." />
+          <h1>Registered User</h1>
+          <table border="1">
+            <thead>
+              <tr>
+                <td>NO</td>
+                <td>First Name</td>
+                <td>Last Name</td>
+                <td>gmail</td>
+                <td>PW</td>
+                <td>Country</td>
+                <td>Org</td>
+                <td>Action</td>
+              </tr>
+            </thead>
+            <tbody id="AllUsers"></tbody>
+          </table>
+        </section>
+        <section id="guestSection">
+          <input id="searchTableGuest" class="search-box" type="text" placeholder="Start Searching..." />
+          <h1>Registered Guest</h1>
+          <table border="1">
+            <thead>
+              <tr>
+                <td>NO</td>
+                <td>First Name</td>
+                <td>Last Name</td>
+                <td>gmail</td>
+                <td>PW</td>
+                <td>Country</td>
+                <td>Action</td>
+              </tr>
+            </thead>
+            <tbody id="AllGuests"></tbody>
+          </table>
+        </section>
+      </section>
+    </main>
+  </div>
+<script>
+  const AddItem1 = document.getElementById('AddItem1');
+const AddItem2 = document.getElementById('AddItem2');
+const UserData = document.getElementById('UserData');
+const BorrowReport = document.getElementById('BorrowReport');
+const AllData = document.getElementById('AllData');
+const AddForGuest = document.getElementById('AddForGuest');
+const AddForUser = document.getElementById('AddForUser');
+
+AddItem1.addEventListener('click', () => {
+  AddForUser.style.display = 'block';
+  AllData.style.display = 'none';
+  AddForGuest.style.display = 'none';
+  RemoveClass();
+  AddItem1.classList.add("active");
+});
+AddItem2.addEventListener('click', () => {
+  AddForUser.style.display = 'none';
+  AllData.style.display = 'none';
+  AddForGuest.style.display = 'block';
+  RemoveClass();
+  AddItem2.classList.add("active");
+});
+UserData.addEventListener('click', () => {
+  AddForUser.style.display = 'none';
+  AllData.style.display = 'grid';
+  AddForGuest.style.display = 'none';
+  RemoveClass();
+  UserData.classList.add("active");
+});
+BorrowReport.addEventListener('click', () => {
+  AddForUser.style.display = 'none';
+  AllData.style.display = 'none';
+  AddForGuest.style.display = 'none';
+  RemoveClass();
+  BorrowReport.classList.add("active");
+});
+
+function RemoveClass(){
+  BorrowReport.classList.remove("active");
+  AddItem1.classList.remove("active");
+  AddItem2.classList.remove("active");
+  UserData.classList.remove("active");
+}
+const userSection = document.getElementById('userSection');
+const guestSection = document.getElementById('guestSection');
+const TableUser = document.getElementById('TableUser');
+const TableGuest = document.getElementById('TableGuest');
+
+TableUser.addEventListener('click', () => {
+  userSection.style.display = 'grid';
+  guestSection.style.display = 'none';
+  TableUser.classList.add("active");
+  TableGuest.classList.remove("active");
+});
+TableGuest.addEventListener('click', () => {
+  userSection.style.display = 'none';
+  guestSection.style.display = 'grid';
+  TableGuest.classList.add("active");
+  TableUser.classList.remove("active");
+});
+
+let containerUser = document.getElementById("containerUser");
+let searchBoxUser = document.getElementById("searchBoxUser");
+let btnUser = document.getElementById("btnUser");
+let titleUser = document.getElementById("titleUser");
+let textUser = document.getElementById("textUser");
+let imgInputUser = document.getElementById("imgInputUser");
+
+const API_URL_USERBOOK = "http://localhost/book_library_management_system/api/BookForUser.php";
+
+async function displayUserData(keyword = "") {
+
+    let response = await fetch(API_URL_USERBOOK);
+    let postuser = await response.json();
+
+    containerUser.innerHTML = "";
+
+    keyword = keyword.toLowerCase();
+
+    postuser.forEach((item) => {
+
+        if (
+            (item.UTitle || "").toLowerCase().includes(keyword) ||
+            (item.UDescription || "").toLowerCase().includes(keyword)
+        ) {
+
+            containerUser.innerHTML += `
+
+            <div style="
+                width:190px;
+                height:340px;
+                margin:15px 0;
+                padding:10px;
+            ">
+
+                <div style="
+                    width:170px;
+                    height:180px;
+                    border:1px solid;
+                    display:flex;
+                    justify-content:center;
+                    align-items:center;
+                ">
+
+                    <img src="${item.UImage || ""}"
+                    width="100%"
+                    height="100%"
+                    style="object-fit:cover;">
+
+                </div>
+
+                <h3 style="font-size:16px;margin-top:5px">
+                    ${item.UTitle || ""}
+                </h3>
+
+                <p style="font-size:13px">
+                    ${item.UDescription || ""}
+                </p>
+
+                <div class="both-btn">
+
+                    <button onclick="EditUserData(${item.UBookID})"
+                    class="EditMain">
+                    Edit
+                    </button>
+
+                    <button onclick="DeleteUserData(${item.UBookID})"
+                    class="DeleteMain">
+                    Delete
+                    </button>
+
+                </div>
+
+            </div>
+            `;
+        }
+
+    });
+
+}
+
+btnUser.addEventListener("click", () => {
+
+    if (titleUser.value === "" || textUser.value === "") {
+        alert("Fill all fields");
+        return;
+    }
+
+    const file = imgInputUser.files[0];
+
+    if (!file) {
+        alert("Select image");
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = async function (e) {
+
+        let formData = new FormData();
+
+        formData.append("id", 0);
+        formData.append("title", titleUser.value);
+        formData.append("des", textUser.value);
+        formData.append("img", e.target.result);
+
+        await fetch(API_URL_USERBOOK, {
+            method: "POST",
+            body: formData
+        });
+
+        displayUserData();
+
+        titleUser.value = "";
+        textUser.value = "";
+        imgInputUser.value = "";
+
+    };
+
+    reader.readAsDataURL(file);
+
+});
+
+async function EditUserData(id) {
+
+    let response = await fetch(API_URL_USERBOOK + "?id=" + id);
+    let itemuser = await response.json();
+
+    let newTitle = prompt(
+        "Edit title:",
+        itemuser.UTitle
+    );
+
+    if (newTitle === null) return;
+
+    let newText = prompt(
+        "Edit description:",
+        itemuser.UDescription
+    );
+
+    if (newText === null) return;
+
+    await fetch(API_URL_USERBOOK, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body:
+            `id=${id}&title=${encodeURIComponent(newTitle)}&des=${encodeURIComponent(newText)}&img=${encodeURIComponent(item.UImage)}`
+    });
+
+    displayUserData();
+
+}
+
+async function DeleteUserData(id) {
+
+    if (confirm("Delete this post?")) {
+
+        await fetch(API_URL_USERBOOK, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: `id=${id}`
+        });
+
+        displayUserData();
+    }
+
+}
+
+const Usertable = document.getElementById("AllUsers");
+
+let NewUser = [];
+
+const API_URL_USER ="http://localhost/book_library_management_system/api/User.php";
+
+async function displayUsers(keyword = "") {
+
+    let response = await fetch(API_URL_USER);
+
+    NewUser = await response.json();
+
+    let userrows = "";
+    keyword = keyword.toLowerCase();
+
+    NewUser.forEach((user, index) => {
+
+        if (
+            (user.FirstName || "").toLowerCase().includes(keyword) ||
+            (user.LastName || "").toLowerCase().includes(keyword) ||
+            (user.Email || "").toLowerCase().includes(keyword) ||
+            (user.Country || "").toLowerCase().includes(keyword) ||
+            (user.Organization || "").toLowerCase().includes(keyword)
+        ) {
+
+            userrows += `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${user.FirstName}</td>
+                <td>${user.LastName}</td>
+                <td>${user.Email}</td>
+                <td>${user.Password}</td>
+                <td>${user.Country}</td>
+                <td>${user.Organization}</td>
+                <td>
+                    <button onclick="EditUser(${user.UserID})" class="EditMain">Edit</button>
+                    <button onclick="DeleteUser(${user.UserID})" class="DeleteMain">Delete</button>
+                </td>
+
+            </tr>
+`;
+        }
+
+    });
+
+    Usertable.innerHTML = userrows;
+
+}
+
+async function EditUser(id) {
+
+    let response =
+        await fetch(API_URL_USER + "?id=" + id);
+
+    let user = await response.json();
+
+    let firstname = prompt(
+        "Edit First Name:",
+        user.FirstName
+    );
+    if (firstname === null) return;
+
+    let lastname = prompt(
+        "Edit Last Name:",
+        user.LastName
+    );
+    if (lastname === null) return;
+
+    let gmail = prompt(
+        "Edit Gmail:",
+        user.Email
+    );
+    if (gmail === null) return;
+
+    if (!gmail.includes("@gmail.com")) {
+        alert("Validation Gmail");
+    return;
+    }
+
+    let password = prompt(
+        "Edit Password:",
+        user.Password
+    );
+    if (password === null) return;
+
+    let country = prompt(
+        "Edit Country:",
+        user.Country
+    );
+    if (country === null) return;
+
+    let organization = prompt(
+        "Edit Organization:",
+        user.Organization
+    );
+    if (organization === null) return;
+
+    await fetch(API_URL_USER, {
+
+        method: "PUT",
+
+        headers: {
+            "Content-Type":
+                "application/x-www-form-urlencoded"
+        },
+
+        body:
+            `id=${id}
+        &fname=${encodeURIComponent(firstname)}
+        &lname=${encodeURIComponent(lastname)}
+        &email=${encodeURIComponent(gmail)}
+        &pw=${encodeURIComponent(password)}
+        &country=${encodeURIComponent(country)}
+        &org=${encodeURIComponent(organization)}`
+    });
+
+    displayUsers();
+}
+
+async function DeleteUser(id) {
+
+    if (confirm("Delete this guest?")) {
+
+        await fetch(API_URL_USER, {
+
+            method: "DELETE",
+
+            headers: {
+                "Content-Type":
+                    "application/x-www-form-urlencoded"
+            },
+
+            body: `id=${id}`
+        });
+
+        displayUsers();
+    }
+}
+
+searchBoxUser.addEventListener("keyup", function () {
+
+    let value = this.value;
+    displayUserData(value);
+
+});
+
+const searchTableUser = document.getElementById('searchTableUser');
+searchTableUser.addEventListener("keyup", function () {
+
+    let value = this.value;
+    displayUsers(value);
+});
+
+
+let containerGuest = document.getElementById("containerGuest");
+let searchBoxGuest = document.getElementById("searchBoxGuest");
+let btnGuest = document.getElementById("btnGuest");
+let titleGuest = document.getElementById("titleGuest");
+let textGuest = document.getElementById("textGuest");
+let imgInputGuest = document.getElementById("imgInputGuest");
+
+const API_URL = "http://localhost/book_library_management_system/api/BookForGuest.php";
+
+async function displayGuestData(keyword = "") {
+
+    let response = await fetch(API_URL);
+    let postguest = await response.json();
+
+    containerGuest.innerHTML = "";
+
+    keyword = keyword.toLowerCase();
+
+    postguest.forEach((item) => {
+
+        if (
+            (item.GTitle || "").toLowerCase().includes(keyword) ||
+            (item.GDescription || "").toLowerCase().includes(keyword)
+        ) {
+
+            containerGuest.innerHTML += `
+
+            <div style="
+                width:190px;
+                height:340px;
+                margin:15px 0;
+                padding:10px;
+            ">
+
+                <div style="
+                    width:170px;
+                    height:180px;
+                    border:1px solid;
+                    display:flex;
+                    justify-content:center;
+                    align-items:center;
+                ">
+
+                    <img src="${item.GImage || ""}"
+                    width="100%"
+                    height="100%"
+                    style="object-fit:cover;">
+
+                </div>
+
+                <h3 style="font-size:16px;margin-top:5px">
+                    ${item.GTitle || ""}
+                </h3>
+
+                <p style="font-size:13px">
+                    ${item.GDescription || ""}
+                </p>
+
+                <div class="both-btn">
+
+                    <button onclick="EditGuestData(${item.GBookID})"
+                    class="EditMain">
+                    Edit
+                    </button>
+
+                    <button onclick="DeleteGuestData(${item.GBookID})"
+                    class="DeleteMain">
+                    Delete
+                    </button>
+
+                </div>
+
+            </div>
+            `;
+        }
+
+    });
+
+}
+
+btnGuest.addEventListener("click", () => {
+
+    if (titleGuest.value === "" || textGuest.value === "") {
+        alert("Fill all fields");
+        return;
+    }
+
+    const file = imgInputGuest.files[0];
+
+    if (!file) {
+        alert("Select image");
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = async function (e) {
+
+        let formData = new FormData();
+
+        formData.append("id", 0);
+        formData.append("title", titleGuest.value);
+        formData.append("des", textGuest.value);
+        formData.append("img", e.target.result);
+
+        await fetch(API_URL, {
+            method: "POST",
+            body: formData
+        });
+
+        displayGuestData();
+
+        titleGuest.value = "";
+        textGuest.value = "";
+        imgInputGuest.value = "";
+
+    };
+
+    reader.readAsDataURL(file);
+
+});
+
+async function EditGuestData(id) {
+
+    let response = await fetch(API_URL + "?id=" + id);
+    let item = await response.json();
+
+    let newTitle = prompt(
+        "Edit title:",
+        item.GTitle
+    );
+
+    if (newTitle === null) return;
+
+    let newText = prompt(
+        "Edit description:",
+        item.GDescription
+    );
+
+    if (newText === null) return;
+
+    await fetch(API_URL, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body:
+            `id=${id}&title=${encodeURIComponent(newTitle)}&des=${encodeURIComponent(newText)}&img=${encodeURIComponent(item.GImage)}`
+    });
+
+    displayGuestData();
+
+}
+
+async function DeleteGuestData(id) {
+
+    if (confirm("Delete this post?")) {
+
+        await fetch(API_URL, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: `id=${id}`
+        });
+
+        displayGuestData();
+    }
+
+}
+
+const Guesttable = document.getElementById("AllGuests");
+
+let NewGuest = [];
+
+const API_URL_GUEST ="http://localhost/book_library_management_system/api/Guest.php";
+
+async function displayGuests(keyword = "") {
+
+
+    let response = await fetch(API_URL_GUEST);
+
+    NewGuest = await response.json();
+
+    let guestrows = "";
+    keyword = keyword.toLowerCase();
+
+    NewGuest.forEach((guest, index) => {
+
+        if (
+            (guest.FirstName || "").toLowerCase().includes(keyword) ||
+            (guest.LastName || "").toLowerCase().includes(keyword) ||
+            (guest.Email || "").toLowerCase().includes(keyword) ||
+            (guest.Country || "").toLowerCase().includes(keyword)
+        ) {
+
+            guestrows += `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${guest.FirstName}</td>
+                <td>${guest.LastName}</td>
+                <td>${guest.Email}</td>
+                <td>${guest.Password}</td>
+                <td>${guest.Country}</td>
+                <td>
+                    <button onclick="EditGuest(${guest.GuestID})" class="EditMain">Edit</button>
+                    <button onclick="DeleteGuest(${guest.GuestID})" class="DeleteMain">Delete</button>
+                </td>
+
+            </tr>
+`;
+        }
+
+    });
+
+    Guesttable.innerHTML = guestrows;
+
+}
+
+async function EditGuest(id) {
+
+    let response =
+        await fetch(API_URL_GUEST + "?id=" + id);
+
+    let guest = await response.json();
+
+    let firstnameguest = prompt(
+        "Edit First Name:",
+        guest.FirstName
+    );
+    if (firstnameguest === null) return;
+
+    let lastnameguest = prompt(
+        "Edit Last Name:",
+        guest.LastName
+    );
+    if (lastnameguest === null) return;
+
+    let gmailguest = prompt(
+        "Edit Gmail:",
+        guest.Email
+    );
+    if (gmailguest === null) return;
+
+    if (!gmailguest.includes("@gmail.com")) {
+        alert("Validation Gmail");
+    return;
+    }
+
+    let passwordguest = prompt(
+        "Edit Password:",
+        guest.Password
+    );
+    if (passwordguest === null) return;
+
+    let countryguest = prompt(
+        "Edit Country:",
+        guest.Country
+    );
+    if (countryguest === null) return;
+
+    await fetch(API_URL_GUEST, {
+
+        method: "PUT",
+
+        headers: {
+            "Content-Type":
+                "application/x-www-form-urlencoded"
+        },
+
+        body:
+            `id=${id}
+        &fname=${encodeURIComponent(firstnameguest)}
+        &lname=${encodeURIComponent(lastnameguest)}
+        &email=${encodeURIComponent(gmailguest)}
+        &pw=${encodeURIComponent(passwordguest)}
+        &country=${encodeURIComponent(countryguest)}`
+    });
+
+    displayGuests();
+}
+
+
+async function DeleteGuest(id) {
+
+    if (confirm("Delete this guest?")) {
+
+        await fetch(API_URL_GUEST, {
+
+            method: "DELETE",
+
+            headers: {
+                "Content-Type":
+                    "application/x-www-form-urlencoded"
+            },
+
+            body: `id=${id}`
+        });
+
+        displayGuests();
+    }
+}
+searchBoxGuest.addEventListener("keyup", function () {
+
+    let value = this.value;
+    displayGuestData(value);
+
+});
+
+const searchTableGuest = document.getElementById('searchTableGuest');
+searchTableGuest.addEventListener("keyup", function () {
+
+    let value = this.value;
+    displayGuests(value);
+});
+
+window.onload = function () {
+    displayUserData();
+    displayUsers();
+    displayGuestData();
+    displayGuests();
+}
+
+</script>
+</body>
+
+</html>

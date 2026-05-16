@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KABALL | Cloud Cataloging</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/Kaball_Book_Library/GetStarted/getStarted.css">
+  <link rel="icon" href="favicon.ico">
+</head>
+<style>
+    html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    color: #0b132b;
+    line-height: 1.6;
+    background: #fff;
+    overflow-x: hidden;
+  }
+
+  a,
+  button,
+  li,
+  img {
+    transition: all .3s ease;
+  }
+
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+    padding: 20px 10%;
+    animation: fadeDown .7s .15s ease both;
+  }
+
+  .logo:hover {
+    transform: translateY(-2px);
+    color: #0097b2;
+  }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .nav-links li {
+    margin-left: 30px;
+  }
+
+  .nav-links a:hover {
+    color: #0097b2;
+  }
+
+  .btn-login,
+  .btn-dark {
+    background: #0b132b;
+    color: #fff !important;
+    padding: 8px 25px;
+    border-radius: 20px;
+    transition: .3s;
+  }
+
+  .btn-login:hover,
+  .btn-dark:hover {
+    background: #0097b2;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 151, 178, .25);
+  }
+
+  .btn-teal {
+    display: inline-block;
+    background: #0097b2;
+    color: white;
+    padding: 12px 35px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 20px;
+    transition: .3s;
+  }
+
+  .btn-teal:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 151, 178, .3);
+  }
+
+  .hero {
+    text-align: center;
+    padding: 60px 20px;
+    animation: fadeUp .7s .15s ease both;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 20px;
+  }
+
+  .video-placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    background: linear-gradient(to bottom, #fff 50%, #f0f4f8 50%);
+  }
+
+  .video-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .video-box video {
+    width: 90%;
+    display: block;
+    max-width: 900px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .5);
+    transition: .4s;
+  }
+
+  .video-box video:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, .15);
+  }
+
+  .content-section {
+    text-align: center;
+    padding: 60px 20%;
+    background: #f0f4f8;
+    animation: fadeUp .7s .15s ease both;
+  }
+
+  .content-section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+  }
+
+  .content-section p {
+    color: #444;
+    max-width: 800px;
+    margin: auto auto 30px;
+  }
+
+  @media(max-width:768px) {
+
+    .hero h1 {
+      font-size: 2.2rem;
+    }
+
+    .content-section {
+      padding: 50px 10%;
+    }
+
+    .nav-links li {
+      margin-left: 18px;
+    }
+
+  }
+
+  /* Register form */
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+    --teal: #3ab8cc;
+    --teal-dark: #2898aa;
+    --teal-light: #e6f7fa;
+    --ink: #0d1b2a;
+    --mid: #4a5568;
+    --surface: #f0f4f7;
+    --card: #ffffff;
+    --border: #cde0e8;
+    --radius: 8px;
+  }
+
+  .head {
+    text-align: center;
+    margin-bottom: 48px;
+    animation: fadeDown .7s .15s ease both;
+  }
+
+  .logo-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: .3s;
+  }
+
+  .title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 34px;
+    color: var(--ink);
+    letter-spacing: -1px;
+  }
+
+  .head p {
+    font-size: 17px;
+    color: var(--mid);
+    margin-top: 6px;
+  }
+
+  .bodyzin {
+    max-width: 860px;
+    margin: auto;
+    background: var(--card);
+    border-radius: 16px;
+    padding: 40px 44px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, .08);
+    animation: fadeUp .7s .15s ease both;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--teal-dark);
+    margin-bottom: 14px;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 34px;
+    color: var(--ink);
+    margin-bottom: 22px;
+  }
+
+  .top {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 10px;
+  }
+
+  .plan-card {
+    flex: 1;
+    background: var(--surface);
+    border: 2px solid transparent;
+    padding: 22px 20px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: border-color .2s, background .2s, transform .2s;
+    position: relative;
+  }
+
+  .plan-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--teal);
+  }
+
+  .plan-card.active {
+    background: var(--teal-light);
+    border-color: var(--teal);
+  }
+
+  .plan-card h4 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .plan-card p {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: var(--mid);
+  }
+
+  .plan-card .badge {
+    position: absolute;
+    top: -10px;
+    right: 12px;
+    background: var(--teal);
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .06em;
+    padding: 2px 9px;
+    border-radius: 20px;
+    display: none;
+  }
+
+  .plan-card.active .badge {
+    display: block;
+  }
+
+  .link {
+    font-size: 13px;
+    color: var(--teal-dark);
+    cursor: pointer;
+    text-decoration: underline;
+    margin-top: 10px;
+    margin-bottom: 0;
+    display: inline-block;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 34px 0;
+  }
+
+  .midbody {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 24px;
+  }
+
+  .field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--mid);
+    margin-bottom: 6px;
+  }
+
+  .field input,
+  .field select {
+    width: 100%;
+    height: 48px;
+    padding: 0 14px;
+    background: var(--teal-light);
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    font-size: 14.5px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+    transition: border-color .2s, box-shadow .2s;
+    outline: none;
+  }
+
+  .field input:focus,
+  .field select:focus {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(58, 184, 204, .15);
+  }
+
+  .field input::placeholder {
+    color: #aab8c2;
+  }
+
+  .bottom {
+    margin-top: 32px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+  }
+
+  .checkbox-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--mid);
+  }
+
+  .checkbox-row input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+    margin-top: 2px;
+    accent-color: var(--teal);
+    flex-shrink: 0;
+  }
+
+  .pricing-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 24px 26px;
+    margin-bottom: 4px;
+  }
+
+  .pricing-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .pricing-row:last-child {
+    margin-bottom: 0;
+  }
+
+  .pricing-row label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--mid);
+  }
+
+  .toggle-group {
+    display: flex;
+    background: #dde7ec;
+    border-radius: 20px;
+    padding: 3px;
+    gap: 3px;
+  }
+
+  .toggle-group button {
+    border: none;
+    padding: 6px 16px;
+    border-radius: 16px;
+    cursor: pointer;
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--mid);
+    transition: background .2s, color .2s;
+    margin: 0;
+  }
+
+  .toggle-group button.active {
+    background: var(--teal);
+    color: white;
+  }
+
+  .currency-select,
+  .manager-select {
+    padding: 7px 12px;
+    border-radius: 6px;
+    border: 1.5px solid var(--border);
+    background: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13.5px;
+    color: var(--ink);
+    outline: none;
+    cursor: pointer;
+  }
+
+  .total-line {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .total-line span {
+    color: var(--teal-dark);
+  }
+
+  /* Toggle switch */
+  .switch-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--mid);
+  }
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 22px;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background: #ccd7de;
+    border-radius: 22px;
+    transition: .3s;
+  }
+
+  .slider::before {
+    content: "";
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    bottom: 3px;
+    background: white;
+    border-radius: 50%;
+    transition: .3s;
+  }
+
+  .switch input:checked+.slider {
+    background: var(--teal);
+  }
+
+  .switch input:checked+.slider::before {
+    transform: translateX(18px);
+  }
+
+  .admin-msg {
+    font-size: 15px;
+    color: var(--mid);
+    line-height: 1.7;
+    margin-bottom: 4px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 22px;
+    padding: 13px 32px;
+    background: var(--ink);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .2s, transform .15s;
+  }
+
+  .btn:hover {
+    background: var(--teal-dark);
+    transform: translateY(-1px);
+  }
+
+  .btn svg {
+    width: 16px;
+    height: 16px;
+    fill: white;
+  }
+
+  @keyframes fadeDown {
+    from {
+      opacity: 0;
+      transform: translateY(-18px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .title {
+      font-size: 34px;
+    }
+
+    .bodyzin {
+      padding: 28px 20px;
+    }
+
+    .top {
+      flex-direction: column;
+    }
+
+    .midbody {
+      grid-template-columns: 1fr;
+    }
+
+    .pricing-row {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  /* login */
+
+  #loginSection,
+  #register,
+  #loginAsGuest,
+  #loginAsAdmin,
+  #loginAsUser {
+    display: none;
+  }
+
+  #registerguest,
+  #registeruser,
+  #contactadmin,
+  #loginSection {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--surface);
+  }
+
+  #loginSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--surface);
+  }
+
+  .login {
+    width: 420px;
+    background: var(--card);
+    border-radius: 16px;
+    padding: 42px 38px;
+    box-shadow: 0 8px 35px rgba(0, 0, 0, .08);
+    display: flex;
+    flex-direction: column;
+    animation: fadeUp .8s ease;
+  }
+
+  .login h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 34px;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .login p {
+    color: var(--mid);
+    margin-bottom: 25px;
+    font-size: 15px;
+  }
+
+  .login input[type="text"],
+  .login input[type="password"],
+  .login input[type="email"] {
+    width: 100%;
+    height: 50px;
+    padding: 0 15px;
+    margin-bottom: 15px;
+    background: var(--teal-light);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-size: 15px;
+    color: var(--ink);
+    outline: none;
+    transition: .2s;
+  }
+
+  .login input:focus {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(58, 184, 204, .15);
+  }
+
+  .login input::placeholder {
+    color: #9fb1bb;
+  }
+
+  .extra-links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    font-size: 13px;
+  }
+
+  .extra-links a {
+    text-decoration: none;
+    color: var(--teal-dark);
+    font-weight: 600;
+  }
+
+  .extra-links a:hover {
+    text-decoration: underline;
+  }
+
+  #logAsUser,
+  #logAsGuest,
+  #logAsAdmin {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background: var(--ink);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: .2s;
+  }
+
+  #logAsUser:hover,
+  #logAsGuest:hover,
+  #logAsAdmin:hover {
+    background: var(--teal-dark);
+    transform: translateY(-2px);
+  }
+
+  .bottom-links {
+    margin-top: 22px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--mid);
+  }
+
+  .bottom-links a {
+    color: var(--teal-dark);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .bottom-links a:hover {
+    text-decoration: underline;
+  }
+
+  #signup {
+    color: var(--teal-dark);
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  @media(max-width:640px) {
+    .login {
+      width: 100%;
+      padding: 30px 22px;
+    }
+
+    .login h2 {
+      font-size: 28px;
+    }
+
+    .extra-links {
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+
+  .icon {
+    font-size: 27px;
+  }
+</style>
+<body>
+
+  <header>
+    <nav class="navbar">
+      <div class="logo-line">
+        <h1 class="title">KABALL</h1>
+        <div class="icon"><span>📖</span></div>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#">Pricing</a></li>
+        <li><a href="#">Support</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#" class="btn-login" id="btnLogin">Login</a></li>
+        <li><a href="#" class="btn-dark getStarted">Get Started</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="contentSection">
+    <section class="hero">
+      <h1>Cloud Cataloging</h1>
+      <p class="subtitle">Your library has never looked so good.<br>
+        Books, Board Games, Movies, Music and Video Games.</p>
+      <a href="#" class="btn-teal getStarted">Get Started</a>
+    </section>
+
+    <section class="video-placeholder">
+      <div class="video-box">
+        <video controls width="90%">
+          <source src="pc.mp4" type="video/mp4">
+        </video>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2>Create & Share Your Collection</h2>
+      <p>Our library management service caters to libraries, schools, organizations, and home catalogs. Our online
+        software lets you create multiple collections, catalog books, board games, movies, music, and video
+        games, create tags, leave notes, import/export, share your collections and much more. We offer two
+        different subscription options to best fit your needs. Libib is the best place for cataloging and
+        managing your media available online. Now which version is the best for you?</p>
+      <a href="#" class="btn-teal">Compare Plans</a>
+    </section>
+
+
+  </main>
+
+  <section id="loginSection" style="display: none;">
+    <section id="loginAsGuest">
+      <div class="login">
+
+        <h2>Login</h2>
+        <input type="text" id="UsernameGuest" placeholder="Username">
+        <input type="password" id="PasswordGuest" placeholder="Password">
+
+        <button id="logAsGuest">Login</button>
+
+        <div class="bottom-links">
+          <p>Don't have an account? <a href="#" class="getStarted">Sign up</a></p>
+
+          <div class="extra-links">
+            <a href="#" class="Premium">Premium</a>
+            <a href="#" class="Admin">Admin</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="loginAsUser">
+      <div class="login">
+        <h2>Premium</h2>
+
+        <input type="text" id="UsernamePremium" placeholder="Username">
+        <input type="password" id="PasswordPremium" placeholder="Password">
+        <input type="password" id="Confirm-Password-Premium" placeholder="Confirm Password">
+
+        <button id="logAsUser">Login</button>
+
+        <div class="bottom-links">
+          <p>Don't have an account? <a href="#" class="getStarted">Sign up</a></p>
+
+          <div class="extra-links">
+            <a href="#" class="Login">Login</a>
+            <a href="#" class="Admin">Admin</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="loginAsAdmin">
+      <div class="login">
+        <h2>Admin</h2>
+        <p>Note; username: Kaball, pw: 168, cpw: 168 </p>
+
+        <input type="text" id="UsernameAdmin" placeholder="Username">
+        <input type="password" id="PasswordAdmin" placeholder="Password">
+        <input type="password" id="Confirm-Password-Admin" placeholder="Confirm Password">
+
+        <button id="logAsAdmin">Login</button>
+
+        <div class="bottom-links">
+          <p>Don't have an account? <a href="#" class="getStarted">Sign up</a></p>
+
+          <div class="extra-links">
+            <a href="#" class="Premium">Premium</a>
+            <a href="#" class="Login">Login</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <section id="registerSection" style="display: none;">
+    <section id="registerguest">
+      <div class="head">
+        <div class="logo-line">
+          <h1 class="title">KABALL</h1>
+          <div class="icon"><span>📖</span></div>
+        </div>
+        <p>Your library catalog — available anywhere, anytime</p>
+      </div>
+
+      <div class="bodyzin">
+
+        <div class="section-label">Step 1</div>
+        <div class="section-title">Choose Your Plan</div>
+
+        <div class="top">
+          <div class="plan-card active">
+            <div class="badge">Selected</div>
+            <h4>Guest</h4>
+            <p>For an individual's home library. Personal use only — no ads, and we never sell your data.</p>
+          </div>
+          <div class="plan-card proCard">
+            <div class="badge">Selected</div>
+            <h4>Premium</h4>
+            <p>Lending, patron management, and a customizable published library for power users.</p>
+          </div>
+          <div class="plan-card adminCard">
+            <div class="badge">Selected</div>
+            <h4>Admin</h4>
+            <p>Multiple accounts and invoicing for organizations and institutions.</p>
+          </div>
+        </div>
+
+        <a class="link">What's the difference? →</a>
+
+        <hr>
+
+        <div class="section-label">Step 2</div>
+        <div class="section-title">Account Info</div>
+
+        <form class="midbody">
+          <div class="field"><label>First Name</label><input placeholder="FirstName" id="firstnameguest"></div>
+          <div class="field"><label>Last Name</label><input placeholder="LastName" id="lastnameguest"></div>
+          <div class="field"><label>Email</label><input type="email" placeholder="........@gmail.com " id="gmailguest">
+          </div>
+          <div class="field"><label>Password</label><input type="password" placeholder="••••••••••" id="passwordguest">
+          </div>
+          <div class="field"><label>Country</label><input placeholder="Country/City" id="countryguest"></div>
+        </form>
+
+        <div id="guestBottom" class="bottom">
+          <div class="checkbox-row">
+            <input type="checkbox" id="guestAgree">
+            <label for="guestAgree">I understand Guest is for personal use only and I agree to the Terms of
+              Service.</label>
+          </div>
+          <button class="btn" type="button" onclick="AddGuest()">
+            <svg viewBox="0 0 24 24">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+            </svg>
+            Create Account
+          </button>
+        </div>
+      </div>
+    </section>
+    <section id="registeruser">
+      <div class="head">
+        <div class="logo-line">
+          <h1 class="title">KABALL</h1>
+          <div class="icon"><span>📖</span></div>
+        </div>
+        <p>Your library catalog — available anywhere, anytime</p>
+      </div>
+
+      <div class="bodyzin">
+
+        <div class="section-label">Step 1</div>
+        <div class="section-title">Choose Your Plan</div>
+
+        <div class="top">
+          <div class="plan-card guestCard">
+            <div class="badge">Selected</div>
+            <h4>Guest</h4>
+            <p>For an individual's home library. Personal use only — no ads, and we never sell your data.</p>
+          </div>
+          <div class="plan-card active">
+            <div class="badge">Selected</div>
+            <h4>Premium</h4>
+            <p>Lending, patron management, and a customizable published library for power users.</p>
+          </div>
+          <div class="plan-card adminCard">
+            <div class="badge">Selected</div>
+            <h4>Admin</h4>
+            <p>Multiple accounts and invoicing for organizations and institutions.</p>
+          </div>
+        </div>
+
+        <a class="link">What's the difference? →</a>
+
+        <hr>
+
+        <div class="section-label">Step 2</div>
+        <div class="section-title">Account Info</div>
+
+        <form class="midbody">
+          <div class="field"><label>First Name</label><input placeholder="FirstName" id="firstname"></div>
+          <div class="field"><label>Last Name</label><input placeholder="LastName" id="lastname"></div>
+          <div class="field"><label>Email</label><input type="email" placeholder="........@gmail.com " id="gmail">
+          </div>
+          <div class="field"><label>Password</label><input type="password" placeholder="••••••••••" id="password">
+          </div>
+          <div class="field"><label>Country</label><input placeholder="Country/City" id="country"></div>
+          <div class="field" id="orgField"><label>Organization</label><input placeholder="Your organization"
+              id="organization"></div>
+        </form>
+        <div id="proBottom" class="bottom">
+          <div class="section-label" style="margin-bottom:14px">Plan Options</div>
+          <div class="pricing-card">
+
+            <div class="pricing-row">
+              <label>Currency</label>
+              <select class="currency-select" id="currencySelect" onchange="updateTotal()">
+                <option value="$" data-symbol="$">USD $</option>
+                <option value="€" data-symbol="€">EUR €</option>
+              </select>
+              <div class="toggle-group">
+                <button class="active" onclick="setBilling('monthly', this)">Monthly</button>
+                <button onclick="setBilling('yearly', this)">Yearly</button>
+              </div>
+            </div>
+
+            <div class="pricing-row">
+              <label>Add Managers <small style="color:#aab8c2">(+$2 each)</small></label>
+              <select class="manager-select" id="managerSelect" onchange="updateTotal()">
+                <option value="0">0 managers</option>
+                <option value="1">1 manager</option>
+                <option value="2">2 managers</option>
+                <option value="3">3 managers</option>
+              </select>
+            </div>
+
+            <div class="pricing-row">
+              <div class="total-line">Total: <span id="totalDisplay">$9/mo</span></div>
+              <div class="switch-wrap">
+                <label class="switch">
+                  <input type="checkbox" id="nonprofitToggle" onchange="updateTotal()">
+                  <span class="slider"></span>
+                </label>
+                <span>Education / Nonprofit discount</span>
+              </div>
+            </div>
+          </div>
+          <button class="btn" type="button" onclick="AddUser()">
+            <svg viewBox="0 0 24 24">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+            </svg>
+            Start Premium
+          </button>
+        </div>
+      </div>
+    </section>
+    <section id="contactadmin">
+      <div class="head">
+        <div class="logo-line">
+          <h1 class="title">KABALL</h1>
+          <div class="icon"><span>📖</span></div>
+        </div>
+        <p>Your library catalog — available anywhere, anytime</p>
+      </div>
+
+      <div class="bodyzin">
+
+        <div class="section-label">Step 1</div>
+        <div class="section-title">Choose Your Plan</div>
+
+        <div class="top">
+          <div class="plan-card guestCard">
+            <div class="badge">Selected</div>
+            <h4>Guest</h4>
+            <p>For an individual's home library. Personal use only — no ads, and we never sell your data.</p>
+          </div>
+          <div class="plan-card proCard">
+            <div class="badge">Selected</div>
+            <h4>Premium</h4>
+            <p>Lending, patron management, and a customizable published library for power users.</p>
+          </div>
+          <div class="plan-card active">
+            <div class="badge">Selected</div>
+            <h4>Admin</h4>
+            <p>Multiple accounts and invoicing for organizations and institutions.</p>
+          </div>
+        </div>
+
+        <a class="link">What's the difference? →</a>
+
+        <hr>
+
+        <div class="section-label">Step 2</div>
+
+        <div class="bottom">
+          <p class="admin-msg">Admin plans include multi-manager access and consolidated invoicing.<br>Reach out
+            and we'll
+            set up your organization's account.</p>
+          <button class="btn">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+            </svg>
+            Contact Us
+          </button>
+        </div>
+
+      </div>
+    </section>
+  </section>
+
+  <script>
+
+    document.querySelectorAll("input").forEach(i => i.value = "");
+    document.querySelectorAll("a[href='#']").forEach(link => {
+      link.addEventListener("click", e => e.preventDefault());
+    });
+    //Get Started
+    const logo = document.querySelectorAll(".logo-line");
+    const btnLogin = document.getElementById("btnLogin");
+    const getStarted = document.querySelectorAll(".getStarted");
+    const loginSection = document.getElementById("loginSection");
+    const contentSection = document.getElementById("contentSection");
+    const registerSection = document.getElementById("registerSection");
+
+    logo.forEach(logo => {
+      logo.addEventListener('click', (e) => {
+        e.preventDefault();
+        hideallsection();
+        contentSection.style.display = 'block';
+      });
+    });
+
+    btnLogin.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      hideallsection();
+      hidealllogin();
+
+      loginSection.style.display = 'flex';
+      loginAsGuest.style.display = 'block';
+    });
+
+    getStarted.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        hideallsection();
+        hideallregister();
+
+        registerSection.style.display = 'block';
+        registerguest.style.display = 'block';
+      });
+    });
+    
+    function hideallsection() {
+      contentSection.style.display = 'none';
+      loginSection.style.display = 'none';
+      registerSection.style.display = 'none';
+    }
+    const loginAsGuest = document.getElementById("loginAsGuest");
+    const loginAsUser = document.getElementById("loginAsUser");
+    const loginAsAdmin = document.getElementById("loginAsAdmin");
+    const Login = document.querySelectorAll(".Login");
+    const Premium = document.querySelectorAll(".Premium");
+    const Admin = document.querySelectorAll(".Admin");
+
+    Login.forEach(Login => {
+      Login.addEventListener('click', (e) => {
+        e.preventDefault();
+        hidealllogin();
+        loginAsGuest.style.display = 'block';
+
+      });
+    });
+
+    Premium.forEach(Premium => {
+      Premium.addEventListener('click', (e) => {
+        e.preventDefault();
+        hidealllogin();
+        loginAsUser.style.display = 'block';
+
+      });
+    });
+
+    Admin.forEach(Admin => {
+      Admin.addEventListener('click', (e) => {
+        e.preventDefault();
+        hidealllogin();
+        loginAsAdmin.style.display = 'block';
+
+      });
+    });
+
+    function hidealllogin() {
+      loginAsGuest.style.display = 'none';
+      loginAsUser.style.display = 'none';
+      loginAsAdmin.style.display = 'none';
+    }
+
+
+    const proCard = document.querySelectorAll('.proCard');
+    const guestCard = document.querySelectorAll('.guestCard');
+    const adminCard = document.querySelectorAll('.adminCard');
+    const registerguest = document.getElementById("registerguest");
+    const registeruser = document.getElementById('registeruser');
+    const contactadmin = document.getElementById('contactadmin');
+
+    guestCard.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        hideallregister();
+        registerguest.style.display = 'block';
+      });
+    });
+
+    proCard.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        hideallregister();
+        registeruser.style.display = 'block';
+      });
+    });
+
+    adminCard.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        hideallregister();
+        contactadmin.style.display = 'block';
+      });
+    });
+
+    function hideallregister() {
+      registeruser.style.display = 'none';
+      contactadmin.style.display = 'none';
+      registerguest.style.display = 'none';
+    }
+
+    //Register Form
+    let billing = 'monthly';
+    const BASE = 9;
+    const BASE_YEARLY = 90;
+    function setBilling(type, btn) {
+      billing = type;
+      btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      updateTotal();
+    }
+
+    function updateTotal() {
+      const managers = parseInt(document.getElementById('managerSelect').value);
+      const nonprofit = document.getElementById('nonprofitToggle').checked;
+      const symbol = document.getElementById('currencySelect').value;
+
+      let base = billing === 'monthly' ? BASE : BASE_YEARLY;
+      let extra = managers * (billing === 'monthly' ? 2 : 20);
+      let total = (base + extra) * (nonprofit ? 0.8 : 1);
+      let label = billing === 'monthly' ? '/mo' : '/yr';
+
+      document.getElementById('totalDisplay').textContent =
+        symbol + Math.round(total) + label + (nonprofit ? ' 🎓' : '');
+    }
+
+
+    //Login Section
+
+    const logAsAdmin = document.getElementById("logAsAdmin");
+    logAsAdmin.addEventListener("click", (a) => {
+      a.preventDefault();
+      let UsernameAdmin = document.getElementById("UsernameAdmin").value;
+      let PasswordAdmin = document.getElementById("PasswordAdmin").value;
+      let ConfirmPasswordAdmin = document.getElementById("Confirm-Password-Admin").value;
+      if (UsernameAdmin === "Kaball" && PasswordAdmin === "168" && ConfirmPasswordAdmin === "168") {
+        alert("logAsAdmin Successful");
+        window.location.href = "AdminInto.html";
+      } else {
+        alert("Invalid username or password");
+      }
+    });
+
+    const API_URL_USER =
+  "http://localhost/book_library_management_system/api/User.php";
+
+let NewUser = [];
+
+async function LoadUsers() {
+
+  let responseuser = await fetch(API_URL_USER);
+
+  NewUser = await responseuser.json();
+
+  DisplayNewUser();
+}
+
+async function AddUser() {
+
+  let firstname = document.getElementById("firstname").value.trim();
+  let lastname = document.getElementById("lastname").value.trim();
+  let gmail = document.getElementById("gmail").value.trim();
+  let password = document.getElementById("password").value.trim();
+  let country = document.getElementById("country").value.trim();
+  let organization = document.getElementById("organization").value.trim();
+
+  if (
+    firstname === "" ||
+    lastname === "" ||
+    gmail === "" ||
+    password === "" ||
+    country === "" ||
+    organization === ""
+  ) {
+    alert("Please input all values");
+    return;
+  }
+
+  if (!gmail.includes("@gmail.com")) {
+    alert("Invalid email");
+    return;
+  }
+
+  let formData = new FormData();
+
+  formData.append("fname", firstname);
+  formData.append("lname", lastname);
+  formData.append("email", gmail);
+  formData.append("pw", password);
+  formData.append("country", country);
+  formData.append("org", organization);
+
+  await fetch(API_URL_USER, {
+    method: "POST",
+    body: formData
+  });
+
+  alert("User Registered Successfully");
+
+  document.getElementById("firstname").value = "";
+  document.getElementById("lastname").value = "";
+  document.getElementById("gmail").value = "";
+  document.getElementById("password").value = "";
+  document.getElementById("country").value = "";
+  document.getElementById("organization").value = "";
+
+  LoadUsers();
+}
+
+function DisplayNewUser() {
+
+  let userrows = "";
+
+  NewUser.forEach((User, index) => {
+
+    userrows += `
+        <tr>
+            <td>${index + 1}</td>
+            <td>${User.FirstName}</td>
+            <td>${User.LastName}</td>
+            <td>${User.Email}</td>
+            <td>${User.Password}</td>
+            <td>${User.Country}</td>
+            <td>${User.Organization}</td>
+        </tr>
+        `;
+  });
+}
+
+const logAsUser = document.getElementById("logAsUser");
+
+    logAsUser.addEventListener("click", async (e) => {
+      e.preventDefault();
+
+      try{
+
+      let username = document.getElementById("UsernamePremium").value.trim();
+      let password = document.getElementById("PasswordPremium").value.trim();
+      let confirm = document.getElementById("Confirm-Password-Premium").value.trim();
+
+      if (username === "" || password === "") {
+        alert("Please enter username and password");
+        return;
+      }
+
+      if (password !== confirm) {
+        alert("Passwords do not match");
+        return;
+      }
+
+      let response = await fetch(API_URL_USER);
+      let User =  await response.json();
+
+      let foundUser = User.find(user =>
+        user.Email === username && user.Password === password
+      );
+
+      if (foundUser) {
+        alert("logAsUser Successful");
+        window.location.href = "UserInto.html";
+      } else {
+        alert("Invalid username or password");
+      }
+    }catch(error){
+
+      console.error(error);
+
+      alert("Something went wrong");
+    }
+    });
+
+
+const API_URL_GUEST = "http://localhost/book_library_management_system/api/Guest.php";
+
+let NewGuest = [];
+    
+async function LoadGuests() {
+  
+  let responseguest = await fetch(API_URL_GUEST);
+  
+  NewGuest = await responseguest.json();
+
+  DisplayNewGuest();
+}
+
+
+async function AddGuest() {
+
+  let firstnameguest =
+    document.getElementById("firstnameguest").value.trim();
+
+  let lastnameguest =
+    document.getElementById("lastnameguest").value.trim();
+
+  let gmailguest =
+    document.getElementById("gmailguest").value.trim();
+
+  let passwordguest =
+    document.getElementById("passwordguest").value.trim();
+
+  let countryguest =
+    document.getElementById("countryguest").value.trim();
+  let agree = document.getElementById("guestAgree").checked;
+
+
+  if (
+    firstnameguest === "" ||
+    lastnameguest === "" ||
+    gmailguest === "" ||
+    passwordguest === "" ||
+    countryguest === ""
+  ) {
+    alert("Please input all values");
+    return;
+  }
+
+  if (!gmailguest.includes("@gmail.com")) {
+    alert("Invalid email");
+    return;
+  }
+  if (!agree) {
+    alert("You must agree to terms");
+    return;
+  }
+
+
+  let formData = new FormData();
+
+  formData.append("fname", firstnameguest);
+  formData.append("lname", lastnameguest);
+  formData.append("email", gmailguest);
+  formData.append("pw", passwordguest);
+  formData.append("country", countryguest);
+
+  await fetch(API_URL_GUEST, {
+    method: "POST",
+    body: formData
+  });
+
+  alert("Guest Registered Successfully");
+
+  
+  document.getElementById("firstnameguest").value = "";
+  document.getElementById("lastnameguest").value = "";
+  document.getElementById("gmailguest").value = "";
+  document.getElementById("passwordguest").value = "";
+  document.getElementById("countryguest").value = "";
+
+  
+  LoadGuests();
+}
+
+
+function DisplayNewGuest() {
+
+  let guestrows = "";
+
+  NewGuest.forEach((Guest, index) => {
+
+    guestrows += `
+        <tr>
+            <td>${index + 1}</td>
+            <td>${Guest.FirstName}</td>
+            <td>${Guest.LastName}</td>
+            <td>${Guest.Email}</td>
+            <td>${Guest.Password}</td>
+            <td>${Guest.Country}</td>
+        </tr>
+        `;
+  });
+
+}
+
+
+ const logAsGuest = document.getElementById("logAsGuest");
+
+    logAsGuest.addEventListener("click", async (a) => {
+      a.preventDefault();
+
+      try{
+
+      let UsernameGuest = document.getElementById("UsernameGuest").value.trim();
+      let PasswordGuest = document.getElementById("PasswordGuest").value.trim();
+
+      if (UsernameGuest === "" || PasswordGuest === "") {
+        alert("Please enter username and password");
+        return;
+      }
+
+      let response = await fetch(API_URL_GUEST);
+      let Guest =  await response.json();
+      
+      let foundGuest = Guest.find(g =>
+        g.Email === UsernameGuest && g.Password === PasswordGuest
+      );
+      
+      if (foundGuest) {
+        alert("logAsGuest Successful");
+        window.location.href = "GuestInto.html";
+      } else {
+        alert("Invalid username or password");
+      }
+    }catch(error){
+
+      console.error(error);
+
+      alert("Something went wrong");
+    }
+    });
+
+window.onload = function () {
+  LoadUsers();
+  LoadGuests();
+};
+
+
+  </script>
+
+</body>
+
+</html>
